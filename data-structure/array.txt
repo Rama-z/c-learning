@@ -1,0 +1,5 @@
+Array adalah struktur data yang menyimpan elemen-elemen dalam urutan yang bersebelahan di memori.
+Setiap elemen memiliki indeks yang berurutan dari 0 sampai N-1, dimana N adalah jumlah elemen.
+Ukuran array dapat berubah sesuai dengan kebutuhan.
+
+

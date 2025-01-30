@@ -1,10 +1,15 @@
 #include <stdio.h>
 
 void printArray (int arr[], int n) {
-
     for (int i = 0; i < n; i++)
     {
         printf("Nilai array ke %d adalah %d \n", i, arr[i]);
+    }
+}
+
+void useArray () {
+    for(int i = 0; i < 5; i++) {
+        printf("yes! /n");
     }
 }
 
@@ -23,6 +28,5 @@ void main () {
 
     printArray(myNewArray, 3);
     printPointerArray(myPointerArray, 3);
-    
-
 }
+

@@ -1,0 +1,145 @@
+# Use MSVC compiler
+CC=cl
+CFLAGS=/std:c11 /MD
+
+# Detect if we're in debug mode
+!IFDEF DEBUG
+!IF $(DEBUG) == 1
+CFLAGS=$(CFLAGS) /Z7 /Od /DDEBUG
+!ELSE
+CFLAGS=$(CFLAGS) /O2 /DNDEBUG
+!ENDIF
+!ELSE
+DEBUG=1
+CFLAGS=$(CFLAGS) /Z7 /Od /DDEBUG
+!ENDIF
+
+# Source files and object files
+SOURCES=tipe_data.c \
+        tipe_bool.c \
+        basic_io.c \
+        basic_io_if.c \
+        basic_io_ifelse.c \
+        basic_io_switch.c \
+        basic_math.c \
+        basic_compare.c \
+        basic_compare_bool.c \
+        basic_function.c \
+        basic_function_proto.c \
+        basic_function_noret.c \
+        basic_function_multi.c \
+        basic_ptr.c \
+        basic_ptr_arr.c \
+				basic_ptr_func.c \
+        basic_struct.c \
+        basic_struct_arr.c \
+        basic_union.c \
+        basic_functions.c \
+				basic_preproc.c \
+				basic_preproc_token_pasting.c \
+				basic_typedef.c 
+
+OBJECTS=$(SOURCES:.c=.obj)
+ILKS=$(SOURCES:.c=.ilk)
+PDBS=$(SOURCES:.c=.pdb)
+
+# Targets
+TARGETS=tipe_data.exe \
+        tipe_bool.exe \
+        basic_io.exe \
+        basic_io_if.exe \
+        basic_io_ifelse.exe \
+        basic_io_switch.exe \
+        basic_math.exe \
+        basic_compare.exe \
+        basic_compare_bool.exe \
+        basic_function.exe \
+        basic_function_proto.exe \
+        basic_function_noret.exe \
+        basic_function_multi.exe \
+        basic_ptr.exe \
+        basic_ptr_arr.exe \
+				basic_ptr_func.exe \
+        basic_struct.exe \
+        basic_struct_arr.exe \
+        basic_union.exe \
+				basic_preproc.exe \
+				basic_preproc_token_pasting.exe \
+				basic_typedef.exe
+
+all: $(TARGETS)
+
+.c.obj:
+	$(CC) $(CFLAGS) /c $<
+
+clean:
+	del /F /Q $(OBJECTS) $(TARGETS) $(ILKS) $(PDBS)
+
+# Linking each target
+tipe_data.exe: tipe_data.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+tipe_bool.exe: tipe_bool.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_io.exe: basic_io.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_io_if.exe: basic_io_if.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_io_ifelse.exe: basic_io_ifelse.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_io_switch.exe: basic_io_switch.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_math.exe: basic_math.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_compare.exe: basic_compare.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_compare_bool.exe: basic_compare_bool.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_function.exe: basic_function.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_function_proto.exe: basic_function_proto.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_function_noret.exe: basic_function_noret.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_function_multi.exe: basic_function_multi.obj basic_functions.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_ptr.exe: basic_ptr.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_ptr_arr.exe: basic_ptr_arr.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_ptr_func.exe: basic_ptr_func.obj
+	$(CC) $(CFLAGS) /Fe$@ $*
+
+basic_struct.exe: basic_struct.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_struct_arr.exe: basic_struct_arr.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_union.exe: basic_union.obj
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_preproc.exe: basic_preproc.obj 
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+basic_preproc_token_pasting.exe: basic_preproc_token_pasting.obj 
+	$(CC) $(CFLAGS) /Fe$@ $** 
+
+basic_typedef.exe: basic_typedef.obj 
+	$(CC) $(CFLAGS) /Fe$@ $**
+
+.PHONY: all clean
